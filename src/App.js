@@ -3,18 +3,26 @@ import "./App.css";
 
 function App() {
   const [count, setCount] = useState(0);
-  const [error, setError] = useState();
+  const [error, setError] = useState(false);
+  const incrementCounter =()=>{
+    if(error){
+      setError(false)
+      setCount(count+1)
+    }else{
+      setCount(count+1)
+    }
+  }
   return (
     <div data-test="component-app">
       {error ? (
-        <h1 data-test="error-message">{error}</h1>
+        <span data-test="error-message">No count below zero</span>
       ) : (
         <h1 data-test="counter-display">
-          The Counter is <span data-test="count">{count}</span>{" "}
+          The Counter is <span data-test="count">{count}</span>
         </h1>
       )}
       <button
-        onClick={() => (error ? setError() : setCount(count + 1))}
+        onClick={incrementCounter}
         data-test="increment-button"
       >
         Increment counter
@@ -22,7 +30,7 @@ function App() {
       <button
         disabled={error ? true : false}
         onClick={() =>
-          count === 0 ? setError("No count below zero") : setCount(count - 1)
+          count > 0 ? setCount(count - 1) :setError(true) 
         }
         data-test="decrement-button"
       >
