@@ -1,17 +1,17 @@
-import React, { useState } from "react";
-import "./App.css";
+import React, { useState } from 'react';
+import './App.css';
 
 function App() {
   const [count, setCount] = useState(0);
   const [error, setError] = useState(false);
   const incrementCounter =()=>{
     if(error){
-      setError(false)
-      setCount(count+1)
+      setError(false);
+      setCount(count+1);
     }else{
-      setCount(count+1)
+      setCount(count+1);
     }
-  }
+  };
   return (
     <div data-test="component-app">
       {error ? (
@@ -34,7 +34,7 @@ function App() {
         }
         data-test="decrement-button"
       >
-        {" "}
+        {' '}
         Decrement counter
       </button>
     </div>
